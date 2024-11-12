@@ -1,33 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/authContext";
-import { useNavigate } from "react-router-dom";
-const Home = () => {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
+import { Link } from "react-router-dom";
 
-  
-  if (user.user_type === "student") {
-    navigate("/instructors");
-  } else {
-    navigate("/availability");
+const Home = () => {
+  const { user, loading } = useAuth();
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    user && setUserData(user);
+   
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="p-4 text-center">
+        <p>Loading...</p>
+      </div>
+    );
   }
+
+ 
+  const dashboardLink = userData?.user_type === "student" ? "/instructors" : "/availability";
 
   return (
     <div className="p-4">
-      {user ? (
-        <div>
-          <h1 className="text-white">Welcome, {user.name}</h1>
-          <button
-            onClick={logout}
-            className="bg-blue-500 text-white p-2 rounded"
-          >
-            Logout
-          </button>
-        </div>
-      ) : (
-        <h1>Please login</h1>
-      )}
-      Please Refresh if you are seeing this page.
+      <Link to={dashboardLink}>
+        <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition">
+          Go to Dashboard
+        </button>
+      </Link>
+
+
+      <h2>Please Refresh first before clicking any button!</h2>
     </div>
   );
 };

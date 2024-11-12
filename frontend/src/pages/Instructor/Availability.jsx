@@ -3,12 +3,18 @@ import { axios } from '../../util/axios';
 import AvailabilityForm from '../../components/AvailabilityForm';
 import AvailabilityList from '../../components/AvailabilityList';
 import { useAuth } from '../../context/authContext';
-
+import { useNavigate } from 'react-router-dom';
 const Availability = () => {
   const [availability, setAvailability] = useState([]);
   const [editSlot, setEditSlot] = useState(null);
   const { user, logout } = useAuth();
+  const navigate=useNavigate();
 
+  useEffect(()=>{
+    if(user.user_type !== "instructor") {
+  navigate("/instructors"); 
+    }
+  },[]);
   const fetchAvailability = async () => {
     try {
       const res = await axios.get('/instructor/availability', {

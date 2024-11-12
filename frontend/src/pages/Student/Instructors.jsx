@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import InstructorList from "../../components/InstructorList";
 import SlotList from "../../components/SlotList";
 import BookingList from "../../components/BookingList";
 import { useAuth } from "../../context/authContext";
-
+import { useNavigate } from "react-router-dom";
 function App() {
   const [selectedInstructor, setSelectedInstructor] = useState(null);
   const { user, logout } = useAuth();
+const navigate=useNavigate();
+
+  useEffect(()=>{
+    user
+  },[]);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 p-6">
