@@ -1,5 +1,10 @@
 # Schedulot
 Platform for connecting instructor to students.
+
+# Technologies
+
+Javascript, Nodejs, Express, Firebase, zod, axios, Vite@react, TailwindCSS
+
 ## Installation
 
 Clone the project 
