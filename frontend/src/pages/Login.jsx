@@ -1,6 +1,6 @@
 import React from 'react'
 import {useAuth} from '../context/authContext';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate,Link} from 'react-router-dom';
 import { useState } from 'react';
 
 const Login = () => {
@@ -60,7 +60,7 @@ const Login = () => {
         </form>
 
         <p className="text-center text-sm text-gray-600">
-          Don't have an account? <a href="/register" className="text-blue-500 hover:underline">Sign up</a>
+          Don't have an account? <Link to={'/register'} className="text-blue-500 hover:underline">Sign up</Link>
         </p>
       </div>
     </div>
